@@ -1,0 +1,55 @@
+{
+  "name": "saturnus",
+  "version": "0.1.0",
+  "description": "Cron parser for ES6",
+  "main": "index.js",
+  "scripts": {
+    "debug": "node debug index.js",
+    "start": "node index.js",
+    "test": "node ./node_modules/mocha/bin/mocha  --recursive --timeout $npm_package_config_timeout",
+    "test:single": "node ./node_modules/mocha/bin/mocha --timeout $npm_package_config_timeout",
+    "test:only": "node ./node_modules/mocha/bin/mocha --recursive --grep $MODULE --timeout $npm_package_config_timeout",
+    "test:except": "node ./node_modules/mocha/bin/mocha --recursive --grep $MODULE -i --timeout $npm_package_config_timeout"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/malpercio/saturnus.git"
+  },
+  "keywords": [
+    "cron",
+    "parser",
+    "cron-parser",
+    "moment",
+    "date",
+    "time"
+  ],
+  "author": {
+    "name": "Daniel González Espinoza",
+    "email": "danielglezespinoza@gmail.com"
+  },
+  "contributors": [
+    {
+      "name": "Jorge Santiago Álvarez Cuadros",
+      "email": "jorge.alvarez@grupojaque.com"
+    },
+    {
+      "name": "Lisandro Vázquez Aguilar",
+      "email": "vazquezlisandro673c@gmail.com"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/malpercio/saturnus/issues"
+  },
+  "homepage": "https://github.com/malpercio/saturnus#readme",
+  "dependencies": {
+    "moment": "^2.18.1"
+  },
+  "devDependencies": {
+    "mocha": "^3.4.2",
+    "should": "^11.2.1"
+  },
+  "config": {
+    "timeout": 9000
+  }
+}
