@@ -43,6 +43,7 @@
   },
   "homepage": "https://github.com/malpercio/saturnus#readme",
   "dependencies": {
+    "bluebird": "^3.5.0",
     "moment": "^2.18.1",
     "sancronos-validator": "^1.1.1"
   },

@@ -9,5 +9,5 @@
 
 ## Installation
 ```bash
-    npm install sails-industrial-factory
+    npm install saturnus
 ```
