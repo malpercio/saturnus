@@ -1,7 +1,7 @@
 const should = require('should');
-const Parser = require('../lib/Parser');
+const Parser = require('../lib/Parser')();
 
-describe('TimeHandler tests', () => {
+describe('Parser tests', () => {
   describe('constructor', () => {
     it('should create a Parser object type 5', () => {
       return new Promise((resolve, reject) => {
