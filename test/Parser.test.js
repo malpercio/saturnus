@@ -46,8 +46,30 @@ describe('Parser tests', () => {
         resolve();
       });
     });
-
   });
 
+
+  describe('getExpression method', () => {
+    it('should return cron expression', () => {
+      return new Promise((resolve, reject) => {
+        let exp = '* * * * *';
+        let instance = new Parser(exp);
+        instance.getExpression().should.equal(exp);
+
+        exp = '* * * * * 2024';
+        instance = new Parser(exp);
+        instance.getExpression().should.equal(exp);
+
+        exp = '3-8 * * * * *';
+        instance = new Parser(exp);
+        instance.getExpression().should.equal(exp);
+
+        exp = '1 2 3 4 5 6 2007';
+        instance = new Parser(exp);
+        instance.getExpression().should.equal(exp);
+        resolve();
+      });
+    });
+  });
 
 });
