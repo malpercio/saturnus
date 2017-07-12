@@ -165,4 +165,15 @@ describe('Parser tests', () => {
     });
   });
 
+  describe('prettify method', () => {
+    it('should make readable a cron expression', () => {
+      return new Promise((resolve, reject) => {
+        let exp = '3,5,7,9,15-19/3 * * 2-4 1-5';
+        let instance = new Parser(exp);
+        console.log(instance.prettify());
+        resolve();
+      });
+    });
+  });
+
 });

@@ -150,4 +150,24 @@ describe('TimeHandler tests', () => {
       });
     });
   });
+
+  describe('partialPrettify()', () => {
+    it('should make readable a TimeHandler', () => {
+      return new Promise((resolve, reject) => {
+        let expression = '10,10-15,34/3',
+          instance,
+          options = {
+            min: 1,
+            max: 60,
+          };
+        instance = new TimeHandler(expression, options);
+        instance.partialPrettify("second").should.equal(
+          "second 10, every second from 10 to 15, every 3 seconds from 34 to 60"
+        );
+        instance = new TimeHandler('*', options);
+        instance.partialPrettify("second").should.equal('every second');
+        resolve();
+      });
+    });
+  });
 });

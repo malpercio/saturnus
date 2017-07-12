@@ -80,4 +80,53 @@ describe('Range tests', () => {
       });
     });
   });
+
+  describe('methods for type of range', () => {
+    it('should be All', () => {
+      return new Promise((resolve, reject) => {
+        let start = 0,
+          end = 59,
+          step = 1;
+        instance = new Range(start, end, step);
+        let all = new Range(start, end, step);
+        instance.isAll(all).should.be.true();
+        resolve();
+      });
+    });
+
+    it('should be Punctual', () => {
+      return new Promise((resolve, reject) => {
+        let start = 10,
+          end = 10,
+          step = 1;
+        instance = new Range(start, end, step);
+        instance.isPunctual().should.be.true();
+        resolve();
+      });
+    });
+
+    it('should be OneStepRange', () => {
+      return new Promise((resolve, reject) => {
+        let start = 10,
+          end = 20,
+          step = 1;
+        instance = new Range(start, end, step);
+        instance.isOneStepRange().should.be.true();
+        resolve();
+      });
+    });
+
+    it('should be RangeCycle', () => {
+      return new Promise((resolve, reject) => {
+        let start = 10,
+          end = 20,
+          step = 4;
+        instance = new Range(start, end, step);
+        instance.isRangeCycle().should.be.true();
+        resolve();
+      });
+    });
+
+  });
+
 });
