@@ -3,7 +3,7 @@ const Parser = require('../lib/Parser')();
 const moment = require('moment');
 
 describe('Parser tests', () => {
-  describe('constructor', () => {
+  describe('constructor()', () => {
     it('should create a Parser object type 5', () => {
       return new Promise((resolve, reject) => {
         let instance = new Parser('* * * * *');

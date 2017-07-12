@@ -3,7 +3,7 @@ const Range = require('../lib/Range');
 const ErrorHandler = require('./helpers/ErrorHandler');
 const should = require('should');
 describe('TimeHandler tests', () => {
-  describe('constructor', () => {
+  describe('constructor()', () => {
     it('should create a TimeHandler object', () => {
       return new Promise((resolve, reject) => {
         let expression = '5',
@@ -46,7 +46,7 @@ describe('TimeHandler tests', () => {
       .catch(ErrorHandler.resolve);
     });
   });
-  describe('__populateAttributes__', () => {
+  describe('__populateAttributes__()', () => {
     it('should add a range cycle', () => {
       return new Promise((resolve, reject) => {
         let expression = '1-5/3',

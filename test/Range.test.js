@@ -2,7 +2,7 @@ const Range = require('../lib/Range');
 const ErrorHandler = require('./helpers/ErrorHandler');
 const should = require('should');
 describe('Range tests', () => {
-  describe('constructor', () => {
+  describe('constructor()', () => {
     it('should create a Range object', () => {
       return new Promise((resolve, reject) => {
         let start = 1,
@@ -58,7 +58,7 @@ describe('Range tests', () => {
       .catch(ErrorHandler.resolve);
     });
   });
-  describe('contains', () => {
+  describe('contains()', () => {
     it('should contain a number', () => {
       return new Promise((resolve, reject) => {
         let start = 1,
