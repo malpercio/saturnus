@@ -2,6 +2,9 @@ const TimeHandler = require('../lib/TimeHandler');
 const Range = require('../lib/Range');
 const ErrorHandler = require('./helpers/ErrorHandler');
 const should = require('should');
+const path = require('path');
+const i18n = require("i18n");
+
 describe('TimeHandler tests', () => {
   describe('constructor()', () => {
     it('should create a TimeHandler object', () => {
@@ -146,6 +149,32 @@ describe('TimeHandler tests', () => {
           ];
         instance = new TimeHandler(expression, options);
         instance.ranges.should.containDeep(newRanges);
+        resolve();
+      });
+    });
+  });
+
+  describe('__partialPrettify__()', () => {
+    it('should make readable a TimeHandler', () => {
+      return new Promise((resolve, reject) => {
+        let expression = '10,10-15,34/3',
+          instance,
+          options = {
+            min: 1,
+            max: 60,
+          };
+
+        i18n.configure({
+          locales:['en', 'es'],
+          directory: path.join(__dirname, '../locales'),
+        });
+        i18n.setLocale('en');
+        instance = new TimeHandler(expression, options);
+        instance.__partialPrettify__("second",i18n).should.equal(
+          "second 10, every second from 10 to 15, every 3 seconds from 34 to 60"
+        );
+        instance = new TimeHandler('*', options);
+        instance.__partialPrettify__("second",i18n).should.equal('every second');
         resolve();
       });
     });
