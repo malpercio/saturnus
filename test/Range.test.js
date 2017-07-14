@@ -89,7 +89,7 @@ describe('Range tests', () => {
           step = 1;
         instance = new Range(start, end, step);
         let all = new Range(start, end, step);
-        instance.isAll(all).should.be.true();
+        instance.__isAll__(all).should.be.true();
         resolve();
       });
     });
@@ -100,7 +100,7 @@ describe('Range tests', () => {
           end = 10,
           step = 1;
         instance = new Range(start, end, step);
-        instance.isPunctual().should.be.true();
+        instance.__isPunctual__().should.be.true();
         resolve();
       });
     });
@@ -111,7 +111,7 @@ describe('Range tests', () => {
           end = 20,
           step = 1;
         instance = new Range(start, end, step);
-        instance.isOneStepRange().should.be.true();
+        instance.__isOneStepRange__().should.be.true();
         resolve();
       });
     });
@@ -122,7 +122,7 @@ describe('Range tests', () => {
           end = 20,
           step = 4;
         instance = new Range(start, end, step);
-        instance.isRangeCycle().should.be.true();
+        instance.__isRangeCycle__().should.be.true();
         resolve();
       });
     });
