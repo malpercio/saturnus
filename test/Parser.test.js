@@ -183,4 +183,91 @@ describe('Parser tests', () => {
     });
   });
 
+  describe('getMoments', () => {
+    it('should finish iterating', () => {
+      return new Promise((resolve, reject) => {
+        let exp = '5 4 1 12 *',
+          instance = new Parser(exp),
+          iterator = instance.getMoments();
+        while(iterator.next().value){}
+        resolve();
+      });
+    });
+    it('should finish give just certain moments', () => {
+      function* moments(){
+        let date = moment("3000-01-01T04:05:00.000");
+        yield date;
+        for(let i = 1; i <= 11; i++){
+          yield date.add(1, 'month');
+        }
+      }
+      return new Promise((resolve, reject) => {
+        let exp = '5 4 1 * *',
+          instance = new Parser(exp, {startDate: moment('2017-01-01T00:00')}),
+          iterator = instance.getMoments(),
+          next = iterator.next(),
+          validDates = moments(),
+          nextValidDate = validDates.next();
+          date = moment('3000-01-01T04:05');
+        do{
+          next.value.format().should.equal(nextValidDate.value.format());
+          next = iterator.next();
+          nextValidDate = validDates.next();
+        }
+        while(!next.done);
+        resolve();
+      });
+    });
+    it('should finish give just certain moments (reloaded)', () => {
+      function* moments(){
+        let date = moment("3000-02-01T04:05:00.000");
+        yield date;
+        yield date.add(1, 'months')
+        yield date.add(8, 'months')
+
+      }
+      return new Promise((resolve, reject) => {
+        let exp = '5 4 1 * 6',
+          instance = new Parser(exp, {startDate: moment('2017-01-01T00:00')}),
+          iterator = instance.getMoments(),
+          next = iterator.next(),
+          validDates = moments(),
+          nextValidDate = validDates.next();
+          date = moment('3000-01-01T04:05');
+        do{
+          next.value.format().should.equal(nextValidDate.value.format());
+          next = iterator.next();
+          nextValidDate = validDates.next();
+        }
+        while(!next.done);
+        resolve();
+      });
+    });
+    it('should finish give just certain moments (revolutions)', () => {
+      function* moments(){
+        let date = moment("2017-01-01T04:05:00.000");
+        yield date;
+        for(let i = 1; i <= 11; i++){
+          yield date.add(1, 'month');
+        }
+      }
+      return new Promise((resolve, reject) => {
+        let exp = '5 4 1 * * 2017',
+          instance = new Parser(exp, {startDate: moment('2017-01-01T00:00'), endDate: moment('2017-12-31T00:00')}),
+          iterator = instance.getMoments(),
+          next = iterator.next(),
+          validDates = moments(),
+          nextValidDate = validDates.next();
+          date = moment('3000-01-01T04:05');
+        do{
+          next.value.format().should.equal(nextValidDate.value.format());
+          next = iterator.next();
+          nextValidDate = validDates.next();
+        }
+        while(!next.done);
+        resolve();
+      });
+    });
+  });
+
 });
