@@ -1,8 +1,11 @@
-[![Stories in Ready](https://badge.waffle.io/malpercio/saturnus.png?label=ready&title=Ready)](https://waffle.io/malpercio/saturnus)
+[![forthebadge](http://forthebadge.com/images/badges/built-by-codebabes.svg)](http://forthebadge.com)
+
+[![Stories in Progress](https://img.shields.io/waffle/label/malpercio/saturnus/in%20progress.svg?style=flat)](https://waffle.io/malpercio/saturnus)
 [![Build Status](https://travis-ci.org/malpercio/saturnus.svg?branch=master)](https://travis-ci.org/malpercio/saturnus)
 [![Dependencies](https://david-dm.org/malpercio/saturnus.svg)](https://travis-ci.org/malpercio/saturnus)
 [![DevDependencies](https://david-dm.org/malpercio/saturnus/dev-status.svg)](https://david-dm.org/malpercio/saturnus)
 [![npm version](https://badge.fury.io/js/saturnus.svg)](https://badge.fury.io/js/saturnus)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/malpercio/saturnus/master/LICENSE)
 
 # Saturnus
 `Saturnus` is a cron parser for ES6, using [Moment.js](https://momentjs.com/) to parse into manageable dates.
@@ -134,3 +137,6 @@ while(!next.done){
 let pretty = chronos.prettify();
 console.log(pretty); //At every second, every minute ...
 ```
+
+_________________
+[![NPM](https://nodei.co/npm/saturnus.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/saturnus/)
