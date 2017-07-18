@@ -270,4 +270,265 @@ describe('Parser tests', () => {
     });
   });
 
+  describe('removeMinutes()', ()=> {
+    it('should remove minute', () => {
+      let exp = '5,* 4 1 1 *',
+        instance = new Parser(exp, {startDate: moment('2017-01-01T00:00'), endDate: moment('2017-12-31T00:00'), throw: true});
+      return new Promise((resolve, reject) => {
+        instance.removeMinutes('*');
+        let iterator = instance.getMoments();
+        iterator.next().done.should.equal(false);
+        iterator.next().done.should.equal(true);
+        resolve();
+      });
+    });
+    it('should not remove an inexistent minute', () => {
+      let exp = '5 4 1 1 *',
+        instance = new Parser(exp, {startDate: moment('2017-01-01T00:00'), endDate: moment('2017-12-31T00:00'), throw: true});
+      return new Promise((resolve, reject) => {
+        instance.removeMinutes('*');
+        let iterator = instance.getMoments();
+        iterator.next().done.should.equal(false);
+        iterator.next().done.should.equal(true);
+        resolve();
+      });
+    });
+  });
+  describe('removeSeconds()', ()=> {
+    it('should remove second', () => {
+      let exp = '1,* 5 4 1 1 *',
+        instance = new Parser(exp, {startDate: moment('2017-01-01T00:00'), endDate: moment('2017-12-31T00:00'), throw: true});
+      return new Promise((resolve, reject) => {
+        instance.removeSeconds('*');
+        let iterator = instance.getMoments();
+        iterator.next().done.should.equal(false);
+        iterator.next().done.should.equal(true);
+        resolve();
+      });
+    });
+    it('should not remove an inexistent second', () => {
+      let exp = '1 5 4 1 1 *',
+        instance = new Parser(exp, {startDate: moment('2017-01-01T00:00'), endDate: moment('2017-12-31T00:00'), throw: true});
+      return new Promise((resolve, reject) => {
+        instance.removeSeconds('*');
+        let iterator = instance.getMoments();
+        iterator.next().done.should.equal(false);
+        iterator.next().done.should.equal(true);
+        resolve();
+      });
+    });
+  });
+  describe('removeDays()', ()=> {
+    it('should remove day', () => {
+      let exp = '5 4 1,* 1 *',
+        instance = new Parser(exp, {startDate: moment('2017-01-01T00:00'), endDate: moment('2017-12-31T00:00'), throw: true});
+      return new Promise((resolve, reject) => {
+        instance.removeDays('*');
+        let iterator = instance.getMoments();
+        iterator.next().done.should.equal(false);
+        iterator.next().done.should.equal(true);
+        resolve();
+      });
+    });
+    it('should not remove an inexistent day', () => {
+      let exp = '5 4 1 1 *',
+        instance = new Parser(exp, {startDate: moment('2017-01-01T00:00'), endDate: moment('2017-12-31T00:00'), throw: true});
+      return new Promise((resolve, reject) => {
+        instance.removeDays('*');
+        let iterator = instance.getMoments();
+        iterator.next().done.should.equal(false);
+        iterator.next().done.should.equal(true);
+        resolve();
+      });
+    });
+  });
+  describe('removeHours()', ()=> {
+    it('should remove hour', () => {
+      let exp = '5 4,* 1 1 *',
+        instance = new Parser(exp, {startDate: moment('2017-01-01T00:00'), endDate: moment('2017-12-31T00:00'), throw: true});
+      return new Promise((resolve, reject) => {
+        instance.removeHours('*');
+        let iterator = instance.getMoments();
+        iterator.next().done.should.equal(false);
+        iterator.next().done.should.equal(true);
+        resolve();
+      });
+    });
+    it('should not remove an inexistent hour', () => {
+      let exp = '5 4 1 1 *',
+        instance = new Parser(exp, {startDate: moment('2017-01-01T00:00'), endDate: moment('2017-12-31T00:00'), throw: true});
+      return new Promise((resolve, reject) => {
+        instance.removeHours('*');
+        let iterator = instance.getMoments();
+        iterator.next().done.should.equal(false);
+        iterator.next().done.should.equal(true);
+        resolve();
+      });
+    });
+  });
+  describe('removeMonths()', ()=> {
+    it('should remove month', () => {
+      let exp = '5 4 1 1,* *',
+        instance = new Parser(exp, {startDate: moment('2017-01-01T00:00'), endDate: moment('2017-12-31T00:00'), throw: true});
+      return new Promise((resolve, reject) => {
+        instance.removeMonths('*');
+        let iterator = instance.getMoments();
+        iterator.next().done.should.equal(false);
+        iterator.next().done.should.equal(true);
+        resolve();
+      });
+    });
+    it('should not remove an inexistent month', () => {
+      let exp = '5 4 1 1 *',
+        instance = new Parser(exp, {startDate: moment('2017-01-01T00:00'), endDate: moment('2017-12-31T00:00'), throw: true});
+      return new Promise((resolve, reject) => {
+        instance.removeMonths('*');
+        let iterator = instance.getMoments();
+        iterator.next().done.should.equal(false);
+        iterator.next().done.should.equal(true);
+        resolve();
+      });
+    });
+  });
+  describe('removeWeekdays()', ()=> {
+    it('should remove weekdays', () => {
+      let exp = '5 4 1 1 *,0 2017',
+        instance = new Parser(exp, {startDate: moment('2017-01-01T00:00'), endDate: moment('2017-12-31T00:00'), throw: true});
+      return new Promise((resolve, reject) => {
+        instance.removeWeekdays('*');
+        let iterator = instance.getMoments();
+        iterator.next().done.should.equal(false);
+        iterator.next().done.should.equal(true);
+        resolve();
+      });
+    });
+    it('should not remove an inexistent weekdays', () => {
+      let exp = '5 4 1 1 0 2017',
+        instance = new Parser(exp, {startDate: moment('2017-01-01T00:00'), endDate: moment('2017-12-31T00:00'), throw: true});
+      return new Promise((resolve, reject) => {
+        instance.removeWeekdays('*');
+        let iterator = instance.getMoments();
+        iterator.next().done.should.equal(false);
+        iterator.next().done.should.equal(true);
+        resolve();
+      });
+    });
+  });
+  describe('removeYears()', ()=> {
+    it('should remove years', () => {
+      let exp = '5 4 1 1 0 2017,*',
+        instance = new Parser(exp, {startDate: moment('2017-01-01T00:00'), endDate: moment('2017-12-31T00:00'), throw: true});
+      return new Promise((resolve, reject) => {
+        instance.removeYears('*');
+        let iterator = instance.getMoments();
+        iterator.next().done.should.equal(false);
+        iterator.next().done.should.equal(true);
+        resolve();
+      });
+    });
+    it('should not remove an inexistent years', () => {
+      let exp = '5 4 1 1 0 2017',
+        instance = new Parser(exp, {startDate: moment('2017-01-01T00:00'), endDate: moment('2017-12-31T00:00'), throw: true});
+      return new Promise((resolve, reject) => {
+        instance.removeYears('*');
+        let iterator = instance.getMoments();
+        iterator.next().done.should.equal(false);
+        iterator.next().done.should.equal(true);
+        resolve();
+      });
+    });
+  });
+  describe('setMinutes()', ()=> {
+    it('should set minute', () => {
+      let exp = '* 4 1 1 *',
+        instance = new Parser(exp, {startDate: moment('2017-01-01T00:00'), endDate: moment('2017-12-31T00:00'), throw: true});
+      return new Promise((resolve, reject) => {
+        instance.setMinutes('5');
+        let iterator = instance.getMoments();
+        iterator.next().done.should.equal(false);
+        iterator.next().done.should.equal(true);
+        resolve();
+      });
+    });
+  });
+  describe('setSeconds()', ()=> {
+    it('should set second', () => {
+      let exp = '* 5 4 1 1 *',
+        instance = new Parser(exp, {startDate: moment('2017-01-01T00:00'), endDate: moment('2017-12-31T00:00'), throw: true});
+      return new Promise((resolve, reject) => {
+        instance.setSeconds('1');
+        let iterator = instance.getMoments();
+        iterator.next().done.should.equal(false);
+        iterator.next().done.should.equal(true);
+        resolve();
+      });
+    });
+
+  });
+  describe('setDays()', ()=> {
+    it('should set day', () => {
+      let exp = '5 4 * 1 *',
+        instance = new Parser(exp, {startDate: moment('2017-01-01T00:00'), endDate: moment('2017-12-31T00:00'), throw: true});
+      return new Promise((resolve, reject) => {
+        instance.setDays('1');
+        let iterator = instance.getMoments();
+        iterator.next().done.should.equal(false);
+        iterator.next().done.should.equal(true);
+        resolve();
+      });
+    });
+
+  });
+  describe('setHours()', ()=> {
+    it('should set hour', () => {
+      let exp = '5 * 1 1 *',
+        instance = new Parser(exp, {startDate: moment('2017-01-01T00:00'), endDate: moment('2017-12-31T00:00'), throw: true});
+      return new Promise((resolve, reject) => {
+        instance.setHours('4');
+        let iterator = instance.getMoments();
+        iterator.next().done.should.equal(false);
+        iterator.next().done.should.equal(true);
+        resolve();
+      });
+    });
+  });
+  describe('setMonths()', ()=> {
+    it('should set month', () => {
+      let exp = '5 4 1 * *',
+        instance = new Parser(exp, {startDate: moment('2017-01-01T00:00'), endDate: moment('2017-12-31T00:00'), throw: true});
+      return new Promise((resolve, reject) => {
+        instance.setMonths('1');
+        let iterator = instance.getMoments();
+        iterator.next().done.should.equal(false);
+        iterator.next().done.should.equal(true);
+        resolve();
+      });
+    });
+  });
+  describe('setWeekdays()', ()=> {
+    it('should set weekdays', () => {
+      let exp = '5 4 1 1 * 2017',
+        instance = new Parser(exp, {startDate: moment('2017-01-01T00:00'), endDate: moment('2017-12-31T00:00'), throw: true});
+      return new Promise((resolve, reject) => {
+        instance.setWeekdays('0');
+        let iterator = instance.getMoments();
+        iterator.next().done.should.equal(false);
+        iterator.next().done.should.equal(true);
+        resolve();
+      });
+    });
+  });
+  describe('setYears()', ()=> {
+    it('should set years', () => {
+      let exp = '5 4 1 1 0 2017-2030',
+        instance = new Parser(exp, {startDate: moment('2017-01-01T00:00'), endDate: moment('2017-12-31T00:00'), throw: true});
+      return new Promise((resolve, reject) => {
+        instance.setYears('2017');
+        let iterator = instance.getMoments();
+        iterator.next().done.should.equal(false);
+        iterator.next().done.should.equal(true);
+        resolve();
+      });
+    });
+  });
 });
