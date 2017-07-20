@@ -1,5 +1,5 @@
 const should = require('should');
-const Parser = require('../lib/Parser')();
+const Parser = require('../lib/Parser');
 const moment = require('moment');
 
 describe('Parser tests', () => {
@@ -532,7 +532,7 @@ describe('Parser tests', () => {
       });
     });
   });
-  
+
   describe('addSeconds()', () => {
     it('should add to seconds', () => {
       return new Promise((resolve, reject) => {
