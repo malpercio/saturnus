@@ -451,6 +451,7 @@ describe('Parser tests', () => {
       });
     });
   });
+
   describe('setSeconds()', ()=> {
     it('should set second', () => {
       let exp = '* 5 4 1 1 *',
@@ -531,4 +532,169 @@ describe('Parser tests', () => {
       });
     });
   });
+  
+  describe('addSeconds()', () => {
+    it('should add to seconds', () => {
+      return new Promise((resolve, reject) => {
+        let exp = '14-20 * * * * *';
+        let instance = new Parser(exp);
+        instance.addSeconds('2-10');
+        instance.getExpression().should.equal('14-20,2-10 * * * * *');
+        resolve();
+      });
+    });
+
+    it('should add to seconds if it is diferent from "*"', () => {
+      return new Promise((resolve, reject) => {
+        let exp = '* * * * *';
+        let instance = new Parser(exp);
+        instance.addSeconds('2-10');
+        instance.getExpression().should.equal('2-10 * * * * *');
+        resolve();
+      });
+    });
+
+    it('should not add to seconds if it is "*"', () => {
+      return new Promise((resolve, reject) => {
+        let exp = '* * * * * *';
+        let instance = new Parser(exp);
+        instance.addSeconds('2-10');
+        instance.getExpression().should.equal('* * * * * *');
+        resolve();
+      });
+    });
+  });
+
+  describe('addMinutes()', () => {
+    it('should add to minutes if it is diferent from "*"', () => {
+      return new Promise((resolve, reject) => {
+        let exp = '12-24 * * * *';
+        let instance = new Parser(exp);
+        instance.addMinutes('2-10');
+        instance.getExpression().should.equal('12-24,2-10 * * * *');
+        resolve();
+      });
+    });
+
+    it('should not add to minutes if it is "*"', () => {
+      return new Promise((resolve, reject) => {
+        let exp = '* * * * *';
+        let instance = new Parser(exp);
+        instance.addMinutes('2-10');
+        instance.getExpression().should.equal('* * * * *');
+        resolve();
+      });
+    });
+  });
+
+  describe('addHours()', () => {
+    it('should add to hours', () => {
+      return new Promise((resolve, reject) => {
+        let exp = '* 12-20 * * *';
+        let instance = new Parser(exp);
+        instance.addHours('2-10');
+        instance.getExpression().should.equal('* 12-20,2-10 * * *');
+        resolve();
+      });
+    });
+
+    it('should not add to Hours if it is "*"', () => {
+      return new Promise((resolve, reject) => {
+        let exp = '* * * * *';
+        let instance = new Parser(exp);
+        instance.addHours('2-10');
+        instance.getExpression().should.equal('* * * * *');
+        resolve();
+      });
+    });
+  });
+
+  describe('addDays()', () => {
+    it('should add to days', () => {
+      return new Promise((resolve, reject) => {
+        let exp = '* * 12-20 * *';
+        let instance = new Parser(exp);
+        instance.addDays('2-10');
+        instance.getExpression().should.equal('* * 12-20,2-10 * *');
+        resolve();
+      });
+    });
+
+    it('should not add to days if it is "*"', () => {
+      return new Promise((resolve, reject) => {
+        let exp = '* * * * *';
+        let instance = new Parser(exp);
+        instance.addDays('2-10');
+        instance.getExpression().should.equal('* * * * *');
+        resolve();
+      });
+    });
+  });
+
+  describe('addMonths()', () => {
+    it('should add to months', () => {
+      return new Promise((resolve, reject) => {
+        let exp = '* * * 2-5 *';
+        let instance = new Parser(exp);
+        instance.addMonths('3-10');
+        instance.getExpression().should.equal('* * * 2-5,3-10 *');
+        resolve();
+      });
+    });
+
+    it('should not add to months if it is "*"', () => {
+      return new Promise((resolve, reject) => {
+        let exp = '* * * * *';
+        let instance = new Parser(exp);
+        instance.addMonths('2-10');
+        instance.getExpression().should.equal('* * * * *');
+        resolve();
+      });
+    });
+  });
+
+  describe('addWeekdays()', () => {
+    it('should add to week days', () => {
+      return new Promise((resolve, reject) => {
+        let exp = '* * * * 0-3';
+        let instance = new Parser(exp);
+        instance.addWeekdays('5-6');
+        instance.getExpression().should.equal('* * * * 0-3,5-6');
+        resolve();
+      });
+    });
+
+    it('should not add to week days if it is "*"', () => {
+      return new Promise((resolve, reject) => {
+        let exp = '* * * * *';
+        let instance = new Parser(exp);
+        instance.addWeekdays('2-10');
+        instance.getExpression().should.equal('* * * * *');
+        resolve();
+      });
+    });
+  });
+
+  describe('addYears()', () => {
+    it('should add to years', () => {
+      return new Promise((resolve, reject) => {
+        let exp = '* * * * * * 2000-2014';
+        let instance = new Parser(exp);
+        instance.addYears('2016-2020');
+        instance.getExpression().should.equal('* * * * * * 2000-2014,2016-2020');
+        resolve();
+      });
+    });
+
+    it('should not add to years if it is "*"', () => {
+      return new Promise((resolve, reject) => {
+        let exp = '* * * * * *';
+        let instance = new Parser(exp);
+        instance.addSeconds('2-10');
+        instance.getExpression().should.equal('* * * * * *');
+        resolve();
+      });
+    });
+  });
+
 });
