@@ -1,6 +1,6 @@
 {
   "name": "saturnus",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Cron parser for ES6",
   "main": "index.js",
   "scripts": {
@@ -47,7 +47,7 @@
     "i18n": "^0.8.3",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
-    "sancronos-validator": "^1.1.1"
+    "sancronos-validator": "^1.2.0"
   },
   "devDependencies": {
     "mocha": "^3.4.2",
