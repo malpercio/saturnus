@@ -1,5 +1,6 @@
 const should = require('should');
 const Parser = require('../lib/Parser');
+const Instantiator = require('../lib/Instantiator');
 const moment = require('moment');
 
 describe('Parser tests', () => {
@@ -707,6 +708,17 @@ describe('Parser tests', () => {
         let instance = new Parser(exp);
         instance.addSeconds('2-10');
         instance.getExpression().should.equal('* * * * * *');
+        resolve();
+      });
+    });
+  });
+
+  describe('parse()', () => {
+    it('should return an Instantiator', () => {
+      return new Promise((resolve, reject) => {
+        let instance = new Parser();
+        instance.isValid.should.be.false();
+        (instance.parse() instanceof Instantiator).should.be.true();
         resolve();
       });
     });
