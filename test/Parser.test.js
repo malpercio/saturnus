@@ -533,6 +533,21 @@ describe('Parser tests', () => {
     });
   });
 
+  describe('__add__()', () => {
+    it('should add whithout validations', () => {
+      return new Promise((resolve, reject) => {
+        let exp = '1 1 1 1 1';
+        let instance = new Parser(exp,{throw:true});
+        instance.minutes = null;
+        instance.days = null;
+        instance.months = null;
+        instance.weekDays = null;
+        instance.__add__('4-8', 'hours', 'notValidate');
+        resolve();
+      });
+    });
+  });
+
   describe('addSeconds()', () => {
     it('should add to seconds', () => {
       return new Promise((resolve, reject) => {
