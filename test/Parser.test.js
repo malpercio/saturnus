@@ -542,8 +542,23 @@ describe('Parser tests', () => {
         instance.minutes = null;
         instance.days = null;
         instance.months = null;
-        instance.weekDays = null;
+        instance.weekdays = null;
         instance.__add__('4-8', 'hours', 'notValidate');
+        resolve();
+      });
+    });
+  });
+
+  describe('__set__()', () => {
+    it('should set whithout validations', () => {
+      return new Promise((resolve, reject) => {
+        let exp = '1 1 1 1 1';
+        let instance = new Parser(exp,{throw:true});
+        instance.minutes = null;
+        instance.days = null;
+        instance.months = null;
+        instance.weekdays = null;
+        instance.__set__('4-8', 'hours', 'notValidate');
         resolve();
       });
     });
