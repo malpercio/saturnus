@@ -23,26 +23,22 @@ This library is under heavy development, because (guess what?) us, "the creators
 ## Quickstart
 
 ```js
-const saturnus = require('saturnus');
+const Saturnus = require('saturnus');
 
-//If you're a Promise geek
-saturnus('* * * * *')
-  .then((chronos) => {
-    //Now we can use a parsed expression
-  })
-  .catch((err) => {
-    //Saturnus can throw errors, so be aware.
-  });
-
-//Or a callback fanatic
-saturnus('* * * * * ', (chronos) => {
-  //Yay we have parsed it
-});
+//Don't worry I'm bot asynchronous and I'm non-blocking
+let chronos = new Saturnus('* * * * *');
+//But if you need me on the fly...
+let buildingCron = new Saturnus();
+buildingCron.parse()
+  .every().step(5).second()         //Every five seconds
+  .at(15).minute()                  //At minute 15
+  .between(12, 15).hours()          //From 12 to 3 p.m.
+  .every.weekday()                  //Any day of the weekday
+  .between(2,9).step(2).months()    //In February, April, June and August
+  .exec()                           //Finish building
 ```
 
-Saturnus uses [Bluebird.js](http://bluebirdjs.com/docs/getting-started.html) for promises and conversion to callbacks. Any method you have available in a Bluebird promise can be used when parsing an expression.
-
-Also, when returning a date, we use [Moment.js](momentjs.com), so it can be easier to manipulate.
+When returning a date, we use [Moment.js](momentjs.com), so it can be easier to manipulate.
 
 And knowing that, just a glimpse at the methods and you're ready to go.
 
@@ -52,14 +48,13 @@ When creating a parsed expression, you can use various options to change its beh
 
 ```js
 let options = {
-  throw: true, //Throws error in real time (bad for callbacks)
-  startDate: Date.now(), //When to start validating
-  endDate: '3000-12-31T23:59', //When to stop recognizing dates
-  locale: 'en', //Locale for prettify
+  throw: false,                 //Throws error in real time (bad for callbacks)
+  startDate: Date.now(),        //When to start validating
+  endDate: '3000-12-31T23:59',  //When to stop recognizing dates
+  locale: 'en',                 //Locale for prettify
 };
-saturnus('* * * * *', options, cb)
-//Or for promises
-saturnus('* * * * *', options)
+let chronos = new Saturnus('* * * * *');
+
 ```
 
 If you use `throw:false`, be aware that the attibute `isValid` will be set to `false`.
@@ -68,9 +63,8 @@ If you use `throw:false`, be aware that the attibute `isValid` will be set to `f
 let options = {
   throw: false,
 };
-saturnus('*', options, (chronos) => {
-  chronos.isValid() //false
-});
+let chronos = new Saturnus('*');
+chronos.isValid()                  //false
 ```
 
 ## Available methods
