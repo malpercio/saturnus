@@ -48,7 +48,7 @@ When creating a parsed expression, you can use various options to change its beh
 
 ```js
 let options = {
-  throw: false,                 //Throws error in real time (bad for callbacks)
+  throw: false,                 //Throw errors in real time (bad for callbacks)
   startDate: Date.now(),        //When to start validating
   endDate: '3000-12-31T23:59',  //When to stop recognizing dates
   locale: 'en',                 //Locale for prettify
@@ -64,73 +64,8 @@ let options = {
   throw: false,
 };
 let chronos = new Saturnus('*');
-chronos.isValid()                  //false
+chronos.isValid                //false
 ```
-
-## Available methods
-
-### includes(Object: date)
----
-**Description:** Verify if the expression includes certain date
-
-**Input:**
-* date
-  - An ISO string, integer, Date object or Moment object
-
-**Output:**
-* boolean
-  - Just a response to know if it's valid or not
-
-**Example:**
-```js
-let a = chronos.includes(456678);
-console.log(a); //Prints true or false
-```
-
-### isNow()
----
-**Description:** Alias for `chronos.includes(Date.now())`
-
-**Output:**
-* boolean
-  - Just a response to know if it's valid or not
-
-**Example:**
-```js
-let a = chronos.isNow();
-console.log(a); //Prints true or false
-```
-
-### *getMoments()
----
-**Description:** Iteratee for returning every valid moment in order. Don't worry, it will return values as long as you want it to.
-
-**Output:**
-* [JS iterator](https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Iterators_and_Generators)
-  - A iterator that returns valid [moment](momentjs.com) instances.
-
-**Example:**
-```js
-let iterator = chronos.getMoments(),
-  next = iterator.next();
-while(!next.done){
-  console.log(next.value); //Prints moment(ISO_STRING)
-}
-```
-
-### prettify()
----
-**Description:** Returns a human readable string
-
-**Output:**
-* string
-  - Representation of the cron expression
-
-**Example:**
-```js
-let pretty = chronos.prettify();
-console.log(pretty); //At every second, every minute ...
-```
-
+# _For the complete docs be sure to visit the_ [wiki](https://github.com/malpercio/saturnus/wiki).
 _________________
 [![NPM](https://nodei.co/npm/saturnus.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/saturnus/)
