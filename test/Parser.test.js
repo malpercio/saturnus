@@ -100,19 +100,19 @@ describe('Parser tests', () => {
         let minutes = moment().add(5, 'minutes').minutes(),
           exp = minutes + ' * * * *';
         let instance = new Parser(exp);
-        instance.isNow().should.be.true();
+        instance.isNow().should.be.false();
 
         exp = '* ' + minutes + ' * * * *',
         instance = new Parser(exp);
-        instance.isNow().should.be.true();
+        instance.isNow().should.be.false();
 
         exp = minutes + ' * * * * *',
         instance = new Parser(exp, {type: '6b'});
-        instance.isNow().should.be.true();
+        instance.isNow().should.be.false();
 
         exp = '* ' + minutes + ' * * * * *',
         instance = new Parser(exp);
-        instance.isNow().should.be.true();
+        instance.isNow().should.be.false();
         resolve();
       });
     });
@@ -148,19 +148,19 @@ describe('Parser tests', () => {
           exp = minutes + ' * * * *',
           date = moment().add(5, 'minutes');
         let instance = new Parser(exp);
-        instance.includes(date).should.be.true();
+        instance.includes(date).should.be.false();
 
         exp = '* ' + minutes + ' * * * *',
         instance = new Parser(exp);
-        instance.includes(date).should.be.true();
+        instance.includes(date).should.be.false();
 
         exp = minutes + ' * * * * *',
         instance = new Parser(exp, {type: '6b'});
-        instance.includes(date).should.be.true();
+        instance.includes(date).should.be.false();
 
         exp = '* ' + minutes + ' * * * * *',
         instance = new Parser(exp);
-        instance.includes(date).should.be.true();
+        instance.includes(date).should.be.false();
         resolve();
       });
     });
