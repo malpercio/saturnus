@@ -184,6 +184,29 @@ describe('Parser tests', () => {
     });
   });
 
+  describe('getAllMoments', () => {
+    it('should stop before EndDate', () => {
+      return new Promise((resolve, reject) => {
+        let exp = '* * * * *',
+        instance = new Parser(exp,{startDate: moment(0), endDate: moment(1000)}),
+        i = instance.getAllMoments();
+        i.length.should.equal(1);
+        resolve();
+      });
+    });
+    it('should get all moments before EndDate', () => {
+      return new Promise((resolve, reject) => {
+        let exp = '* * * * *',
+        instance = new Parser(exp,{startDate: moment(0), endDate: moment(86400000)}),
+        i = instance.getAllMoments();
+        console.log(instance.endDate);
+        i.length.should.equal(360);
+        resolve();
+      });
+    });
+
+  });
+
   describe('getMoments', () => {
     it('should finish iterating', () => {
       return new Promise((resolve, reject) => {
